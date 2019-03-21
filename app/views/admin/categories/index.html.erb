@@ -1,0 +1,12 @@
+<h1>Current Catagories:</h1>
+  <% @category.map do |m| %>
+    <h3> <%= m.name %> </h3>
+  <%end%>
+
+ 
+
+ <%= form_for :category, html: {:class => 'newcata'} do |f| %>
+  name: <%= f.text_field :name %><br />
+ 
+  <%= f.submit %>
+<% end %>

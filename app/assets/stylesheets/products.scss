@@ -1,5 +1,8 @@
 main section.products-index,
 main section.categories-show {
+  .newcata {
+    color: red;
+  }
 
   .products {
     display:         flex;
@@ -39,6 +42,7 @@ main section.categories-show {
 
       }
 
+
       footer {
         position: absolute;
         bottom: 0;
@@ -75,7 +79,11 @@ main section.categories-show {
     }
   }
 }
-
+.newcata {
+  float: right;
+  margin-top: -8em;
+  font-size: 26px
+}
 main section.products-show {
 
   .product-detail {
@@ -83,6 +91,7 @@ main section.products-show {
       max-width: 100%;
     }
   }
+  
 }
 
 
