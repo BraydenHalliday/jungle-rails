@@ -1,8 +1,6 @@
 main section.products-index,
 main section.categories-show {
-  .newcata {
-    color: red;
-  }
+ 
 
   .products {
     display:         flex;
@@ -84,12 +82,25 @@ main section.categories-show {
   margin-top: -8em;
   font-size: 26px
 }
-.cata {
+//.cata {
   
+//}
+.check {
+  background-color: #d9d9d9;
+  border-style: outset;
+  border-color: #c1ccca
+}
+.total {
+ 
 }
 .img {
   max-width: 10em;
 }
+.signin {
+  margin-top: 1em;
+  float: right;
+}
+
 
 main section.products-show {
 

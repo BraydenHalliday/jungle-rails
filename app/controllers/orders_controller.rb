@@ -2,14 +2,28 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-  
+    #@lineitem = Order.line_items
+   
   end
-
+ 
   def create
-    charge = perform_stripe_charge
+
+
+    begin 
+      charge = perform_stripe_charge 
+     
+    rescue StandardError => e  
+      puts e.message  
+      puts e.backtrace.inspect  
+    end 
+
+
     order  = create_order(charge)
 
     if order.valid?
+      #potential issue
+      puts "!!!!!!!!!!!!!!!! #{order.line_items.inspect}"
+      UserMailer.confirmation_email(current_user, order).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
@@ -38,10 +52,11 @@ class OrdersController < ApplicationController
 
   def create_order(stripe_charge)
     order = Order.new(
-      email: params[:stripeEmail],
+      email: User.find(session[:user_id]).email,
       total_cents: cart_subtotal_cents,
       stripe_charge_id: stripe_charge.id, # returned by stripe
     )
+    #params[:stripeEmail] the default email 
 
     enhanced_cart.each do |entry|
       product = entry[:product]
@@ -51,6 +66,7 @@ class OrdersController < ApplicationController
         quantity: quantity,
         item_price: product.price,
         total_price: product.price * quantity
+      
       )
     end
     order.save!

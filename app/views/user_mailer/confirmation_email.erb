@@ -1,15 +1,12 @@
-<section class="orders-show">
 
-  <header class="page-header">
-
-  
-  </header>
-
-  <div class="order-summary jumbotron">
-    <h3>Thank you for your order!  </h3>
-    <h3>Order #<%= @order.id %></h3>
-
-    <% @order.line_items.map do |f|%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for your order! ,</h1>
+ <% @order.line_items.map do |f|%>
     <aside class= 'check'>
       <h2><%=f.product.name%></h2>
       <img class='img' src= '<%=f.product.image %>' '></img>
@@ -21,10 +18,8 @@
     <% end %>
    <aside class= 'total'>
      <h3>Total: $ <%=@order[:total_cents] / 60 %></h3>
-    <h4>Order email: <%= @order.email%></h4>
-    </aside>
-  </div>
 
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
-</section>
+    <p>Have a great day!</p>
+  </body>
+</html>
