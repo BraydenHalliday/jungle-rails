@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :categories, only: [:index, :new, :create]
   end
-  resources :users, except: [:destroy]
+  resources :users, except: [:destroy, :index]
   # resources :session, only: [:create, :destroy]
 
   get '/login' => 'sessions#new'

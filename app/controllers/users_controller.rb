@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  def index 
-  end
+
   #Ex:- add_index("admin_users", "username")
   #Ex:- add_index("admin_users", "username")
   def new
