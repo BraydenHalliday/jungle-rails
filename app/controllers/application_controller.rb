@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
 
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
+    
   end
+  puts "!!!!!!!!!!!!!!!!!!#{@cart.inspect}"
   helper_method :cart
 
   def enhanced_cart
