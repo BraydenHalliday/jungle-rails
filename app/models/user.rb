@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :reviews
 #validates :password, confirmation: true
 #validates :firstname, length: { maximum: 30 }
 #validates :lastname, length: { maximum: 30 }

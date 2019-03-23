@@ -22,10 +22,26 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+      
         </dl>
       </div>
+        <div class="col-sm-8">
+        <dl class="dl-horizontal">
+    <%@product.reviews.map do |f|%>
+          <dt>customer review:</dt>
+           <dd><%= f.rating%>/5</dd>
+            <dt>review description:</dt>
+            <dd><%=f.description%></dd>
+           <%end%>
+           </div>
+           
     </div>
 
+<%= form_for :reviews, :url => "/products/#{@product.id}/reviews" do |f| %>
+
+  Review: <%= f.text_field :description %>
+  rating: <%= f.select :rating, [[1,1], [2,2], [3,3], [4,4], [5,5]] %>
+  <%end%>
   </article>
 
 </section>
