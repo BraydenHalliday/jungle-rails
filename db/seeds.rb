@@ -131,29 +131,6 @@ cat3.products.create!({
   quantity: 0,
   price: 2_483.75
 })
-Review.create!({
-  id: 1,
-  product_id: 2,
-  user_id: 1,
-   description: "bad",
-    rating: 2
 
-})
-Review.create!({
-  id: 2,
-  product_id: 2,
-  user_id: 3,
-   description: "good",
-    rating: 5
-
-})
-Review.create!({
-  id: 3,
-  product_id: 1,
-  user_id: 2,
-   description: "good but weird",
-    rating: 4
-
-})
 
 puts "DONE!"
