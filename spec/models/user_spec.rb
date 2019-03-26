@@ -9,10 +9,11 @@ RSpec.describe User, type: :model do
         firstname: 'swift',
         lastname: 'current',
         email: 'this@that.com',
-        password: 'this'
+        password: 'this',
+        password_confirmation: 'this'
 
       )
-  
+      @user.save
       expect(@user).to be_valid
     end
   end
@@ -22,7 +23,8 @@ RSpec.describe User, type: :model do
         firstname: nil,
         lastname: 'current',
         email: 'this@that.com',
-        password: 'this'
+        password: 'this',
+        password_confirmation: 'this'
 
       )
       @user.save
@@ -38,7 +40,8 @@ RSpec.describe User, type: :model do
         firstname: 'swift',
         lastname: nil,
         email: 'this@that.com',
-        password: 'this'
+        password: 'this',
+        password_confirmation: 'this'
 
       )
       @user.save
@@ -51,7 +54,8 @@ RSpec.describe User, type: :model do
         firstname: 'swift',
         lastname: 'current',
         email: 'this@that.com',
-        password: nil
+        password: nil,
+        password_confirmation: 'this'
 
       )
       @user.save
@@ -60,16 +64,49 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Validations' do
+    it "password and password confirmation must match" do
+      @user = User.new(
+        firstname: 'swift',
+        lastname: 'current',
+        email: 'this@that.com',
+        password: 'this',
+        password_confirmation: 'that'
+
+      )
+      @user.save
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+  end
+
+
+  describe 'Validations' do
     it "is not valid without an email" do
       @user = User.new(
         firstname: 'swift',
         lastname: 'current',
         email: nil,
-        password: 'this'
+        password: 'this',
+        password_confirmation: 'this'
+
+      )
+      
+      @user.save
+      expect(@user.errors.full_messages).to include("Email can't be blank")
+    end
+  end
+
+  describe 'Validations' do
+    it "password must be less than 30 charectors" do
+      @user = User.new(
+        firstname: 'swift',
+        lastname: 'current',
+        email: 'this@that.com',
+        password: 'thisqwertyuioplkjhgfdsazxcvbnmlkjhgffdsas',
+        password_confirmation: 'that'
 
       )
       @user.save
-      expect(@user.errors.full_messages).to include("Email can't be blank")
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
   end
 end
